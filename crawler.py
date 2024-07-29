@@ -25,8 +25,9 @@ def crawler_wei_bo():
             card_group = res_json.get('data').get('cards')[0].get('card_group')
             for card in card_group:
                 title = card.get('desc')
+                hotNum = card.get('desc_extr')
                 href = web_base_url.format(title)
-                content_list.append({'title': title, 'href': href})
+                content_list.append({'title': title, 'href': href, 'hot': hotNum})
         except Exception as e:
             logging.error('新浪微博 parser error {}'.format(e))
     return {'hot_name': '新浪微博', 'content': content_list}
